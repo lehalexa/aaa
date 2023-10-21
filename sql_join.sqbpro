@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Alexey/Desktop/sql/sql_join.db" readonly="0" foreign_keys="0" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1288"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainPersons1"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Persons" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="90"/><column index="2" value="106"/><column index="3" value="104"/><column index="4" value="115"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Persons1" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="90"/><column index="2" value="106"/><column index="3" value="104"/><column index="4" value="115"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Positions" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="101"/><column index="2" value="80"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE Persons1
+(
+	PersonID INTEGER PRIMARY KEY,
+	First_name VARCHAR (255) NOT NULL,
+	Last_name VARCHAR (255) NOT NULL,
+	Position_ref INTEGER NULL
+);</sql><sql name="SQL 2">CREATE TABLE Positions
+(
+	PositionID INTEGER PRIMARY KEY,
+	Position VARCHAR(255) NOT NULL
+	);
+	
+</sql><sql name="SQL 3">INSERT INTO Persons1
+	(First_name, Last_name)
+VALUES 
+	('Akasha', 'Akinshin')
+
+	</sql><sql name="SQL 4">INSERT INTO Positions
+	(Position)
+VALUES 
+	('Analist');</sql><sql name="INNER JOIN">SELECT PersonID, First_name, Position
+FROM Persons1
+INNER JOIN Positions on PositionID = Position_ref</sql><sql name="LEF JOIN">SELECT PersonID, First_name, Position
+FROM Persons1
+LEFT JOIN Positions on PositionID = Position_ref</sql><sql name="RIGHT JOIN">SELECT PersonID, First_name, Position
+FROM Positions
+LEFT JOIN Persons1 on PositionID = Position_ref
+-- RIGHT JOIN Positions on PositionID = Position_ref</sql><sql name="FULL JOIN">-- SELECT PersonID, First_name, Position
+-- FROM Positions
+-- FULL JOIN Persons1 on PositionID = Position_ref
+
+SELECT PersonID, First_name, Position
+FROM Persons1
+LEFT JOIN Positions on PositionID = Position_ref
+UNION
+SELECT PersonID, First_name, Position
+FROM Positions
+LEFT JOIN Persons1 on PositionID = Position_ref</sql><sql name="FULL JOIN (1)">SELECT PersonID, First_name, Position
+FROM Persons1
+LEFT JOIN Positions on PositionID = Position_ref
+WHERE PositionID IS NULL
+UNION
+SELECT PersonID, First_name, Position
+FROM Positions
+LEFT JOIN Persons1 on PositionID = Position_ref
+WHERE Position_ref IS NULL</sql><current_tab id="8"/></tab_sql></sqlb_project>
